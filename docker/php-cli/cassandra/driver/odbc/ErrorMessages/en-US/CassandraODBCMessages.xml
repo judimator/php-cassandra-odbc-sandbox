@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Messages [
+  <!ELEMENT Messages (Package*)>
+
+  <!ELEMENT Package (Error*)>
+  <!ATTLIST Package ID CDATA #REQUIRED>
+  <!ATTLIST Package DefaultComponent CDATA #REQUIRED>
+
+  <!ELEMENT Error (#PCDATA)>
+  <!ATTLIST Error Key ID #REQUIRED>
+  <!ATTLIST Error Component CDATA #IMPLIED>
+  <!ATTLIST Error NativeErrorCode CDATA #REQUIRED>
+  <!ATTLIST Error Params CDATA "0">
+]>
+
+<Messages>
+  <!-- Package CO_ERROR. ID corresponds to the CO_ERROR constant defined in CassanrdaODBC.h -->
+  <Package ID="101" DefaultComponent="CassandraODBC">
+    <!-- General error thrown if a CQL API call fails. -->
+    <Error Key="CQLNativeError" Params="1" NativeErrorCode="5">Error from the CQL API: %1%</Error>
+
+    <!-- Error thrown when Cassandra fails to execute a query. -->
+    <Error Key="COExecutionFailed" Params="2" NativeErrorCode="10">Error while executing a query in Cassandra: [%1%] : %2%</Error>
+
+    <!-- Error thrown when Cassandra fails to execute a query. -->
+    <Error Key="COPrepareFailed" Params="2" NativeErrorCode="15">Error while preparing a query in Cassandra: [%1%] : %2%</Error>
+
+    <!-- Error thrown when failing to retrieve data. -->
+    <Error Key="CORetrieveFailed" Params="2" NativeErrorCode="20">Error while retrieving data from Cassandra: [%1%] : %2%</Error>
+
+    <!-- Error thrown when an overflow for varint/decimal types is detected. -->
+    <Error Key="CONumberOverflow" NativeErrorCode="25">Cassandra number data is too large to fit equivalent ODBC data type.</Error>
+
+    <!-- Error thrown when no keyspace is defined. -->
+    <Error Key="CONullKeyspace" NativeErrorCode="30">Keyspace is NULL and no default keyspace is defined.</Error>
+
+    <!-- Error thrown when nested collections are detected. -->
+    <Error Key="CONestedCollections" NativeErrorCode="35">Nested collections are not supported.</Error>
+
+    <!-- Error thrown when an unsupported Cassandra type is used. -->
+    <Error Key="COUnsupportedType" Params="1" NativeErrorCode="40">Unsupported Cassandra type: %1%.</Error>
+
+    <!-- Error thrown when attempting to set the partition key to NULL. -->
+    <Error Key="COInsertNullPrimaryKeyError" Params="0" NativeErrorCode="45">Inserting or updating a primary key column with NULL is not allowed.</Error>
+
+    <!-- Error thrown when a inserting the key column with the default value. -->
+    <Error Key="COKeyColumnDefaultValueError" Params="0" NativeErrorCode="50">Inserting a row with default value for the partition key is not supported.</Error>
+
+    <!-- Error thrown when attempting to insert a duplicate primary key. -->
+    <Error Key="COKeyColumnDuplicate" Params="0" NativeErrorCode="55">Inserting a duplicate primary key is not allowed.</Error>
+
+    <!-- Error thrown when failing to convert timestamp data. -->
+    <Error Key="COTimestampConversionError" Params="1" NativeErrorCode="60">Unable to convert the timestamp %1% to unix timestamp.</Error>
+
+    <!-- Error thrown when failing to convert date data. -->
+    <Error Key="CODateConversionError" Params="1" NativeErrorCode="61">Unable to convert the date %1% to Cassandra date format.</Error>
+
+    <!-- Error thrown when numeric data contains a fractional part. -->
+    <Error Key="CONumericTruncationError" Params="0" NativeErrorCode="65">Decimal digit to the right of decimal point not allowed for numeric type with 0 scale.</Error>
+
+    <!-- Error thrown when collection string is malformed. -->
+    <Error Key="COCollectionMalformedError" Params="0" NativeErrorCode="70">Collection is not formatted correctly.</Error>
+
+    <!-- Error thrown when failing to convert data to Cassandra data. -->
+    <Error Key="COConvertFailed" Params="2" NativeErrorCode="75">Error while encoding data for Cassandra: [%1%] : %2%</Error>
+
+    <!-- Error thrown when failing to resolve the host. -->
+    <Error Key="COHostNotFound" Params="1" NativeErrorCode="80">Cannot resolve host: %1%</Error>
+
+    <!-- Error thrown when no primary keys can be found. -->
+    <Error Key="CONoPrimaryKeys" Params="0" NativeErrorCode="85">No primary keys found. At least one is required.</Error>
+
+    <!-- Error thrown when an attempt to update a primary key is made. -->
+    <Error Key="COUpdatePrimaryKeyError" Params="0" NativeErrorCode="90">Cassandra does not allow updates to primary keys.</Error>
+
+    <!-- Error thrown when a connection attempt fails. -->
+    <Error Key="COConnectError" Params="1" NativeErrorCode="100">Failed to connect to Cassandra database: %1%</Error>
+
+    <!-- Warning posted when connecting to notify the user that Cassandra . -->
+    <Error Key="COInsertAsUpsertWarning" NativeErrorCode="110">INSERT and UPDATE in Cassandra are treated as UPSERTs. INSERT and UPDATE will both set the column values regardless of whether data already exists.</Error>
+
+    <!-- Error thrown when there is no primary key constraint defined for a CREATE TABLE statement. -->
+    <Error Key="CONoPrimaryKeyInCreateTable" Params="0" NativeErrorCode="120">Primary key need to be defined for CREATE TABLE statement.</Error>
+
+    <!-- Error thrown when UNIQUE constraint used in CREATE TABLE statement. -->
+    <Error Key="COUniqueConstraintNoSupported" Params="0" NativeErrorCode="130">UNIQUE constraint not supported by Cassandra.</Error>
+
+    <!-- Error thrown a virtual table is bing dropped. -->
+    <Error Key="CODropVirtualNoSupported" Params="0" NativeErrorCode="140">Dropping virtual table is not supported.</Error>
+
+    <!-- Error thrown when an attempt to update a list index in a virtual table is made. -->
+    <Error Key="COListIndexUpdateNotSupported" Params="0" NativeErrorCode="150">Updating the list index column in a virtual table is not supported.</Error>
+
+    <!-- Warning raised when an async write operation times out on the server side. -->
+    <Error Key="COAsyncWriteTimeoutWarning" Params="0" NativeErrorCode="160">A write operation had timed out on the server side. This may not mean that the write operation had failed. Please check the table to confirm if the write operation had been performed successfully. If possible, please also consider increasing the value for the write_request_timeout_in_ms server side configuration to help reduce the likelihood of such error happening during high volume write work flow.</Error>
+
+    <!-- Error thrown when nested collection iterator for frozen types is null. -->
+    <Error Key="CONullTupleIterator" NativeErrorCode="170">Unsupported nested Tuple. Unable to retrieve metadata for the nested type of this table.</Error>
+
+    <!-- Error thrown when nested collection iterator for frozen types is null. -->
+    <Error Key="CONullUDTIterator" NativeErrorCode="180">Unsupported nested User-defined. Unable to retrieve metadata for the nested type of this table.</Error>
+
+    <!-- Error thrown when nested collection iterator for frozen types is null. -->
+    <Error Key="CONullMapIterator" NativeErrorCode="190">Unsupported nested Map. Unable to retrieve metadata for the nested type of this table.</Error>
+
+    <!-- Error thrown when nested collection iterator for frozen types is null. -->
+    <Error Key="CONullListIterator" NativeErrorCode="200">Unsupported nested List. Unable to retrieve metadata for the nested type of this table.</Error>
+
+    <!-- Error thrown when nested collection iterator for frozen types is null. -->
+    <Error Key="CONullSetIterator" NativeErrorCode="210">Unsupported nested Set. Unable to retrieve metadata for the nested type of this table.</Error>
+
+    <!-- Error thrown when join clause queried and join clause is set to off. -->
+    <Error Key="COJoinClauseOff" NativeErrorCode="220">Unsupported query. Join clauses are turned off.</Error>
+
+    <!-- Error thrown when the DML opearation when a Cassandra column type is not supported. -->
+    <Error Key="COUnsupportedDMLOpearationOnType" NativeErrorCode="230">Unsupported query for Cassandra column type %1%.</Error>
+
+    <!-- Error thrown when attempting to retrieve keyspaces and no keyspaces found. -->
+    <Error Key="CONoKeyspacesFound" NativeErrorCode="240">No keyspaces found.</Error>
+
+    <!-- Error thrown when attempting to retrieve empty schema metadata. -->
+    <Error Key="CONoSchemaMetadata" NativeErrorCode="250">No schema metadata found.</Error>
+
+    <!-- Error thrown when attempting to retrieve empty schema metadata. -->
+    <Error Key="COEmptyKeyspaceIterator" NativeErrorCode="260">No keyspaces to iterate over.</Error>
+
+    <!-- Error thrown when attempting to retrieve empty schema metadata. -->
+    <Error Key="CONoTableMetadataFound" NativeErrorCode="270">No table metadata found.</Error>
+
+    <!-- Error thrown when attempting to retrieve empty schema metadata. -->
+    <Error Key="CONoSessionFound" NativeErrorCode="280">No session found.</Error>
+
+    <!-- Error thrown when attempting to retrieve empty schema metadata. -->
+    <Error Key="CONoKeyspaceMetadata" NativeErrorCode="290">No keyspace metadata.</Error>
+
+    <!-- Error thrown when attempting to retrieve empty schema metadata. -->
+    <Error Key="COEmptyMetadataIterator" NativeErrorCode="300">Empty keyspace metadata iterator.</Error>
+
+    <!-- Error thrown when attempting to retrieve empty schema metadata. -->
+    <Error Key="CONullTableIterator" NativeErrorCode="310">Null table iterator.</Error>
+
+    <!-- Error thrown invalid precision for Bigint type in filter. -->
+    <Error Key="COInvalidBigintPrecision" NativeErrorCode="320">Invalid precision for Bigint type.</Error>
+
+    <!-- Error thrown for unsupported numeric. -->
+    <Error Key="COUnsupportedNumeric" NativeErrorCode="330">Unsupported numeric type.</Error>
+
+    <!-- Error thrown for invalid date. -->
+    <Error Key="COInvalidDate" NativeErrorCode="340">Invalid date.</Error>
+
+    <!-- Error thrown for invalid time. -->
+    <Error Key="COInvalidTime" NativeErrorCode="350">Invalid time.</Error>
+
+    <!-- Error thrown for invalid timestamp. -->
+    <Error Key="COInvalidTimestamp" NativeErrorCode="360">Invalid timestamp.</Error>
+
+    <!-- Error thrown when the data cannot be negated. -->
+    <Error Key="COCannotNegateData" NativeErrorCode="370">Cannot negate data.</Error>
+
+    <!-- Error thrown when the data an invalid numeric type. -->
+    <Error Key="COInvalidNumeric" NativeErrorCode="380">Invalid numeric data.</Error>
+
+    <!-- Error thrown when more than one expression is included in a filtered expression with a solr query . -->
+    <Error Key="COOneIndexExpressionSorlQuery" NativeErrorCode="390">Search queries must have only one index expression.</Error>
+
+    <!-- Error thrown when the expression contains an unsupported solr query comparison. -->
+    <Error Key="COUnsupportedSorlQuery" NativeErrorCode="400">Unsupported solr query filter.</Error>
+
+  </Package>
+</Messages>

@@ -1,0 +1,3 @@
+Please review the most up to date DataStax End User Agreement
+
+http://www.datastax.com/enterprise-terms
